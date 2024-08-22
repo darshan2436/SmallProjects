@@ -1,0 +1,24 @@
+form{
+    display: flex;
+    flex-direction: column;
+    display: none;
+}
+h1 i{
+    position: absolute;
+    margin:15px  0 0 15px;
+    font-size: 12px;
+    &:hover{
+        color: red;
+    }
+    cursor: pointer; 
+}
+
+.container form input{
+    width: 60%;
+}
+.todo ol{
+    list-style-type: none;
+}
+.todo div ol li{
+    display: flex;
+}
