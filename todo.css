@@ -107,7 +107,7 @@ h1 i{
     z-index: 1;
     width: 90%;
     display: flex;
-    justify-content: center;
+    justify-content:space-around;
     flex-wrap: wrap;
 }
 .todo h1{
@@ -119,4 +119,52 @@ h1 i{
     border-radius: 5px;
     margin: 30px ;
     width: 40%;
+}
+@media screen and (max-width : 1200px) {
+    .container #new{
+        margin-left: 600px;
+    }
+    .container form{
+        margin-left: 500px;
+    }
+}
+@media screen and (max-width : 900px) {
+    .container #new{
+        margin-left: 200px;
+    }
+    .container form{
+        width: 350px;
+        font-size: 20px;
+        margin-left: 100px;
+    }
+    .todo{
+        width: 100%;
+    }
+    .todo div{
+        font-size: 13px;
+        margin: 15px;
+        width: 35%;
+    }
+}
+@media screen and (max-width : 750px) {
+    .container #new{
+        width: 100px;
+        font-size: 14px;
+    }
+    .container form{
+        width: 280px;
+        font-size: 18px;
+    }
+    .container form input,.container form button{
+        font-size: 14px;
+    }
+}
+@media screen and (max-width : 450px) {
+    .container form{
+        width: 80%;
+        margin-left: 0px;
+    }
+    .todo div{
+        width: 80%;
+    }
 }
