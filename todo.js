@@ -31,6 +31,8 @@ function addTask(e){
     listInput.push(tasks);
     taskNo++;
     task.value = "";
+    showList(listInput);
+    document.querySelector("#addlist").style.display = "block";
 }
 
 addTaskBtn.addEventListener("click",addTask);
@@ -58,35 +60,39 @@ addListBtn.addEventListener("click",(e)=>{
     listInput = [];
     taskNo = 0;
     title.value = "";
+    document.querySelector(".container form").style.visibility= "hidden";
+    location.reload();
 })
 
 function displayList(listArr){
     todo.innerHTML = "";
     listArr.forEach((list,index) => {
-        todo.innerHTML += `
+        let id;
+        let content = `
         <div class="${index}">
         <h1>${list.title}<i class="fa-solid fa-trash" id="${index}"></i></h1>
-        </div>`
-        let lists = document.createElement("ol");
-        let id
+        <ol>`
         for(i=0;i<list.taskNumber;i++){
             id = list.title + i;
-            lists.innerHTML += `
+            content += `
             <li><input type="checkbox" id="${id}" ${list.task[i].isChecked ? 'checked': ''}>${list.task[i].task}</li>
             `
         }
-        todo.appendChild(lists);
+        content += `</ol></div>`;
+        todo.innerHTML += content;
     });
 
-    let deleteBtns = document.querySelectorAll(".fa-solid");
+    let deleteBtns = document.querySelectorAll(".fa-trash");
     deleteBtns.forEach((deleteBtn)=>{
         deleteBtn.addEventListener("click",()=>{
             listArr = JSON.parse(localStorage.getItem("list"));
-            console.log(deleteBtn.id);
-            if(listArr){
-                listArr.splice(deleteBtn.id,1);
-                localStorage.setItem("list",JSON.stringify(listArr));
-                location.reload();
+            let userConfirmed = confirm(`Are you sure you want to delete task: ${listArr[deleteBtn.id].title}`)
+            if(userConfirmed){
+                if(listArr){
+                    listArr.splice(deleteBtn.id,1);
+                    localStorage.setItem("list",JSON.stringify(listArr));
+                    location.reload();
+                }
             }
         })
     })
@@ -108,7 +114,17 @@ checkbox.forEach((check)=>{
     })
 })
 
+let listValue = document.querySelector(".values");
+function showList(lists){
+    listValue.innerHTML = "";
+    let listsEl = document.createElement("ul");
+    listsEl.classList.add("input-list");
+    lists.forEach((list)=>{
+        listsEl.innerHTML += `<li>${list.task}</li>`
+    })
+    listValue.appendChild(listsEl);
+}
 
 document.querySelector("#new").addEventListener("click",()=>{
-    document.querySelector(".container form").style.display = "block";
+    document.querySelector(".container form").classList.toggle("show");
 })
