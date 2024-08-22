@@ -73,9 +73,12 @@ function displayList(listArr){
         <h1>${list.title}<i class="fa-solid fa-trash" id="${index}"></i></h1>
         <ol>`
         for(i=0;i<list.taskNumber;i++){
+            let isListChecked = list.task[i].isChecked;
             id = list.title + i;
             content += `
-            <li><input type="checkbox" id="${id}" ${list.task[i].isChecked ? 'checked': ''}>${list.task[i].task}</li>
+            <li>${isListChecked ? '<strike>':'<span>'}<input type="checkbox" id="${id}" ${isListChecked ? 'checked': ''}>${list.task[i].task}
+            ${isListChecked ? '</strike>':'</span>'}
+            </li>
             `
         }
         content += `</ol></div>`;
@@ -86,7 +89,7 @@ function displayList(listArr){
     deleteBtns.forEach((deleteBtn)=>{
         deleteBtn.addEventListener("click",()=>{
             listArr = JSON.parse(localStorage.getItem("list"));
-            let userConfirmed = confirm(`Are you sure you want to delete task: ${listArr[deleteBtn.id].title}`)
+            let userConfirmed = confirm(`Are you sure you want to delete the task: ${listArr[deleteBtn.id].title}`);
             if(userConfirmed){
                 if(listArr){
                     listArr.splice(deleteBtn.id,1);
@@ -111,6 +114,7 @@ checkbox.forEach((check)=>{
             }
         })
         localStorage.setItem("list",JSON.stringify(listArr));
+        location.reload();
     })
 })
 
