@@ -50,6 +50,10 @@ form{
     opacity: 1;
     visibility: visible;
 }
+.hide{
+    opacity: 0;
+    visibility: hidden;
+}
 form label{
     width: 92%;
     display: flex;
@@ -64,6 +68,11 @@ h1 i{
         color: red;
     }
     cursor: pointer; 
+}
+
+h1 span{
+    float: right;
+    font-size: 13px;
 }
 
 .container form input,.container form button{
@@ -137,6 +146,9 @@ h1 i{
         font-size: 20px;
         margin-left: 100px;
     }
+    h1 i{
+        margin: 10px 0 0 10px;
+    }
     .todo{
         width: 100%;
     }
@@ -158,11 +170,26 @@ h1 i{
     .container form input,.container form button{
         font-size: 14px;
     }
+    h1{
+        display: flex;
+        flex-direction: column;
+    }
+    h1 i{
+        position:relative;
+    }
+    .todo div{
+        font-size: 11px;
+        margin: 5px;
+        width: 40%;
+    }
 }
 @media screen and (max-width : 450px) {
     .container form{
         width: 80%;
         margin-left: 0px;
+    }
+    h1{
+        flex-direction: row;
     }
     .todo div{
         width: 80%;

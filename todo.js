@@ -1,5 +1,6 @@
 let title = document.querySelector("#title");
 let task = document.querySelector("#task");
+let date = document.querySelector("#date");
 let addTaskBtn = document.querySelector("#addtask");
 let addListBtn = document.querySelector("#addlist");
 let todo = document.querySelector(".todo");
@@ -16,6 +17,7 @@ else{
 let listInput = [];
 let taskNo = 0;
 let id;
+let isDeadline = false;
 
 function addTask(e){
     e.preventDefault();
@@ -38,7 +40,6 @@ function addTask(e){
 addTaskBtn.addEventListener("click",addTask);
 
 addListBtn.addEventListener("click",(e)=>{
-    e.preventDefault();
     const tasks = task.value;
     if(taskNo === 0){
         alert("no task inserted");
@@ -47,9 +48,15 @@ addListBtn.addEventListener("click",(e)=>{
     if(tasks !== "" || tasks !== null){
         addTask(e);
     }
-
+    e.preventDefault();
+    const deadline = date.value;
+    if(deadline !== ""){
+        isDeadline = true;
+    }
     const titleValue = title.value;
     const list = {
+        isDeadline:isDeadline,
+        deadline:deadline,
         title: titleValue,
         taskNumber:taskNo,
         task : listInput
@@ -67,10 +74,12 @@ addListBtn.addEventListener("click",(e)=>{
 function displayList(listArr){
     todo.innerHTML = "";
     listArr.forEach((list,index) => {
+        let date = new Date();
         let id;
         let content = `
         <div class="${index}">
-        <h1>${list.title}<i class="fa-solid fa-trash" id="${index}"></i></h1>
+        <h1>${list.title}<i class="fa-solid fa-trash" id="${index}"></i><span class="${list.isDeadline ? 'show': 'hide'}">Deadline:
+        ${list.deadline}</span></h1>
         <ol>`
         for(i=0;i<list.taskNumber;i++){
             let isListChecked = list.task[i].isChecked;
@@ -130,5 +139,5 @@ function showList(lists){
 }
 
 document.querySelector("#new").addEventListener("click",()=>{
-    document.querySelector(".container form").classList.toggle("show");
+    document.querySelector(".container #form").classList.toggle("show");
 })
