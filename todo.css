@@ -191,6 +191,9 @@ h1 span{
     h1{
         flex-direction: row;
     }
+    h1 span{
+        margin-top: 10px;
+    }
     .todo div{
         width: 80%;
     }

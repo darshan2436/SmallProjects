@@ -78,7 +78,7 @@ function displayList(listArr){
         let id;
         let content = `
         <div class="${index}">
-        <h1>${list.title}<i class="fa-solid fa-trash" id="${index}"></i><span class="${list.isDeadline ? 'show': 'hide'}">Deadline:
+        <h1>${list.title}<i class="fa-solid fa-trash" id="${index}"></i>&nbsp&nbsp<span class="${list.isDeadline ? 'show': 'hide'}">Deadline:
         ${list.deadline}</span></h1>
         <ol>`
         for(i=0;i<list.taskNumber;i++){
