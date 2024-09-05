@@ -189,10 +189,7 @@ h1 span{
         margin-left: 0px;
     }
     h1{
-        flex-direction: row;
-    }
-    h1 span{
-        margin-top: 10px;
+        display: inline;
     }
     .todo div{
         width: 80%;
